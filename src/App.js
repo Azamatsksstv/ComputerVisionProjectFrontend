@@ -36,33 +36,52 @@ const SketchFilterApp = () => {
     <>
       <div className="mmmain">
         <div>
-          <input type="file" />
-      <div className="imagecontainer">
-        <img className="notload" src={notload}/>
-      </div>
+          <input type="file" accept="image/*" onChange={handleFileChange}/>
+          <div className="imagecontainer">
+            {filteredImage ? (
+                <img className="notload" src={`http://127.0.0.1:8000${filteredImage.image_file}`} alt="Filtered"/>
+            ) : (
+                <img className="notload" src={notload}/>
+            )}
+          </div>
         </div>
 
         <div>
           <div className="filterssyrty">
-          <div className="choosefilterwithcss">
-            <p>Sketch</p>
-          </div>
             <div className="choosefilterwithcss">
-            <p>Blur</p>
-          </div>
+              <p>
+                <input type="radio" name="filter" value="sketch" onChange={handleFilterChange}/>
+                Sketch
+              </p>
+            </div>
             <div className="choosefilterwithcss">
-            <p>Black and white</p>
-          </div>
+              <p>
+                <input type="radio" name="filter" value="blur" onChange={handleFilterChange}/>
+                Blur
+              </p>
+            </div>
             <div className="choosefilterwithcss">
-            <p>Kafwefw</p>
-          </div>
-              <div className="choosefilterwithcss">
-            <p>ewfwefrege</p>
+              <p>
+                <input type="radio" name="filter" value="blackandwhite" onChange={handleFilterChange}/>
+                Black and White
+              </p>
+            </div>
+            <div className="choosefilterwithcss">
+              <p>
+                <input type="radio" name="filter" value="kafwefw" onChange={handleFilterChange}/>
+                Kafwefw
+              </p>
+            </div>
+            <div className="choosefilterwithcss">
+              <p>
+                <input type="radio" name="filter" value="ewfwefrege" onChange={handleFilterChange}/>
+                Ewfwefrege
+              </p>
+            </div>
           </div>
 
-        </div>
 
-          <div className="applybrn">
+          <div onClick={handleSend} className="applybrn">
              <p>Apply</p>
           </div>
 
