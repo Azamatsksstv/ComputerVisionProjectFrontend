@@ -5,10 +5,12 @@ import notload from './components/notfound.png'
 
 const SketchFilterApp = () => {
   const [selectedFile, setSelectedFile] = useState(null);
-  const [selectedFilter, setSelectedFilter] = useState('blackandwhite');
+  const [selectedFilter, setSelectedFilter] = useState('');
   const [filteredImage, setFilteredImage] = useState(null);
-  const handleFilterChange = (event) => {
-    setSelectedFilter(event.target.value);
+  const [activeFilter, setActiveFilter] = useState(null); // новое состояние
+  const handleFilterChange = (filter) => {
+    setSelectedFilter(filter);
+    setActiveFilter(filter); // устанавливаем активный фильтр при его выборе
   };
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
@@ -17,7 +19,11 @@ const SketchFilterApp = () => {
   const handleSend = async () => {
     try {
       if (!selectedFile) {
-        console.error('Please choose a file before sending.');
+        alert('Please choose a file before sending.');
+        return;
+      }
+      if (!selectedFilter) {
+        alert('Please choose a filter before sending.');
         return;
       }
 
@@ -48,37 +54,57 @@ const SketchFilterApp = () => {
 
         <div>
           <div className="filterssyrty">
-            <div className="choosefilterwithcss">
-              <p>
-                <input type="radio" name="filter" value="sketch" onChange={handleFilterChange}/>
-                Sketch
-              </p>
+
+
+            <div
+              className={`choosefilterwithcss ${activeFilter === "blur" ? "active" : ""}`}
+              onClick={() => handleFilterChange("blur")}
+            >
+              <p>Blur Filter</p>
             </div>
-            <div className="choosefilterwithcss">
-              <p>
-                <input type="radio" name="filter" value="blur" onChange={handleFilterChange}/>
-                Blur
-              </p>
+
+            <div
+              className={`choosefilterwithcss ${activeFilter === "emboss" ? "active" : ""}`}
+              onClick={() => handleFilterChange("emboss")}
+            >
+              <p>Emboss Filter</p>
             </div>
-            <div className="choosefilterwithcss">
-              <p>
-                <input type="radio" name="filter" value="blackandwhite" onChange={handleFilterChange}/>
-                Black and White
-              </p>
+
+
+            <div
+              className={`choosefilterwithcss ${activeFilter === "sharpen" ? "active" : ""}`}
+              onClick={() => handleFilterChange("sharpen")}
+            >
+              <p>Sharpen Filter</p>
             </div>
-            <div className="choosefilterwithcss">
-              <p>
-                <input type="radio" name="filter" value="kafwefw" onChange={handleFilterChange}/>
-                Kafwefw
-              </p>
+
+
+            <div
+              className={`choosefilterwithcss ${activeFilter === "sepia" ? "active" : ""}`}
+              onClick={() => handleFilterChange("sepia")}
+            >
+              <p>Sepia Filter</p>
             </div>
-            <div className="choosefilterwithcss">
-              <p>
-                <input type="radio" name="filter" value="ewfwefrege" onChange={handleFilterChange}/>
-                Ewfwefrege
-              </p>
+
+
+            <div
+              className={`choosefilterwithcss ${activeFilter === "sketch" ? "active" : ""}`}
+              onClick={() => handleFilterChange("sketch")}
+            >
+              <p>Sketch Filter</p>
             </div>
+
+
+
+            <div
+              className={`choosefilterwithcss ${activeFilter === "blackandwhite" ? "active" : ""}`}
+              onClick={() => handleFilterChange("blackandwhite")}
+            >
+              <p>Black and White Filter</p>
+            </div>
+            {/* Добавьте аналогичный код для остальных фильтров */}
           </div>
+
 
 
           <div onClick={handleSend} className="applybrn">

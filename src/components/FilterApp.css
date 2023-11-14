@@ -106,6 +106,12 @@ input[type="file"]::file-selector-button:active {
     margin-top: 15px;
     /*background-color: #0964b0;*/
 }
+
+.choosefilterwithcss.active {
+  background-color: #6a4ea5; /* Измените цвет фона на черный или другой по вашему выбору */
+  color: white; /* Измените цвет текста, чтобы он был виден на черном фоне */
+}
+
 .filterssyrty :hover{
     background-color: #6a4ea5;
 }
@@ -134,4 +140,39 @@ input[type="file"]::file-selector-button:active {
 
 .applybrn:hover{
     background-color: #210b4b;
+}
+
+
+/*mobile*/
+
+@media only screen and (max-width: 600px) {
+  .mmmain {
+      /*width: ;*/
+    flex-direction: column; /* Изменение направления расположения элементов на вертикальное для мобильных устройств */
+  }
+    .mmmain .div{
+        width: 700px;
+    }
+
+  .notload{
+    width: 80%;
+      height: 80%/* Растягиваем контейнер изображения на всю ширину экрана */
+    /*margin: 10px 0; !* Добавляем отступы *!*/
+  }
+  .imagecontainer{
+      width: 95%;
+      /*width:370px;*/
+      /*height: 250px;*/
+      height: 95%;
+      /*height: 50%;*/
+  }
+
+  .choosefilterwithcss {
+    width: 95%; /* Растягиваем фильтры на всю ширину экрана */
+    margin-bottom: 10px; /* Добавляем отступы между фильтрами */
+  }
+
+  .applybrn {
+    width: 95%; /* Растягиваем кнопку Apply на всю ширину экрана */
+  }
 }
